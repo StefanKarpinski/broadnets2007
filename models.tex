@@ -1,0 +1,26 @@
+\begin{tabular}{|c|l|p{5in}|}
+\multicolumn{1}{c}{\textbf{Behavior Level}} &
+\multicolumn{1}{c}{\textbf{Model}} &
+\multicolumn{1}{c}{\textbf{Description}} \\
+\hline
+\multirow{3}[6]{*}{Flow Topology}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{T}race} &
+Mapping of flow end-points to wireless nodes taken directly from trace data. \\ \cline{2-3}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{S}ink} &
+One end-point is internal and the other external. The internal node is randomly chosen. \\ \cline{2-3}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{U}niform} &
+Both end-points are uniformly randomly chosen from all of the wireless nodes. \\
+\hline
+\multirow{2}[4]{*}{Flow Behavior}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{T}race} &
+Each flow has the actual start time, end time, total data sent, and number of packets from the trace. \\ \cline{2-3}
+\bigstrut & \multirow{1}{*}{\textbf{U}niform} &
+All flows have the same duration, volume, packet rate, and data rate as the trace average. \\
+\hline
+\multirow{2}[4]{*}{Packet Behavior}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{T}race} &
+The sequence of packet sizes and inter-transmission intervals is taken directly from the trace. \\ \cline{2-3}
+\bigstrut & \multirow{1}{*}[-0.05em]{\textbf{U}niform} &
+Packets sizes are uniform and the inter-packet interval is constant (CBR). \\
+\hline
+\end{tabular}

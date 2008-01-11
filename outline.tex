@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\usepackage[left=0.8in,top=0.9in,right=0.8in,bottom=1in,nohead]{geometry}
+\usepackage{rotating}
+
+\title{
+On Realism of Wireless Traffic Models\\
+{\Large{or ``How Bad is CBR Anyway?''}}
+}
+\author{
+Stefan Karpinski $\left<{\texttt{sgk@cs.ucsb.edu}}\right>$
+}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\begin{itemize}
+\item Realism deficit schpiel (adapted from MAE report).
+\item Mobility has been investigated and found to to have a drastic impact on a variety of metrics in wireless networks.
+\item Traffic patterns have not been investigated at all. There are three aspects that characterize traffic patterns:
+\begin{enumerate}
+\item flow \textbf{topology}: how flows are mapped between nodes in the network
+\item flow \textbf{parameters}: duration, total bytes, total packets in a given flow
+\item flow \textbf{behavior}: the actual sequence of data exchanged between endpoints.
+\end{enumerate}
+\item Standard traffic model: random uniform topology, uniform fixed parameters, and CBR behavior.
+\item Clearly, this fails to match actual behavior in any but the most contrived scenarios.
+\begin{itemize}
+\item Give some historical background for why CBR was chosen initially.
+\end{itemize}
+\item There was previously no insight into what impact, if any, this has on the accuracy of metrics.
+\item This paper provides a comprehensive analysis of how the standard traffic model in common usage differs from a realistic usage---taken from actual traces in a large deployed wireless network.
+\item Summarize the major results.
+\end{itemize}
+
+\section{Related Work}
+
+\begin{itemize}
+\item Adapted from the discussion in the MAE report updated with any new relevant papers.
+\end{itemize}
+
+\section{Methodology}
+
+\begin{itemize}
+\item Discuss and describe the IETF60 data set and how it was collected.
+\item Simulation setup
+\begin{itemize}
+\item qualnet: 802.11b + AODV
+\item  random node placement, no mobility
+\item all traffic to external destination is sent to a single gateway node
+\end{itemize}
+\item 24 hours of trace data split into 10-minute segments.
+\item Each segment serves as a simulation scenario and data from the scenario provides the basis for a set of simulations using a range of different traffic models.
+\end{itemize}
+
+\subsection{The Traffic Models}
+
+\begin{itemize}
+\item Flow topology variants:
+\begin{itemize}
+\item \textbf{real}: mapping of wireless nodes and flow end-points from the trace data.
+\item \textbf{uniform}: end points of each flow are randomly chosen from all of the wireless nodes.
+\item \textbf{sink}: for each flow, one endpoint is internal and the other is external; the internal node is randomly chosen from all the wireless nodes.
+\end{itemize}
+\item  Flow parameter variants:
+\begin{itemize}
+\item \textbf{actual}: each flow has the same start time, end time, total data sent, and number of packets as the corresponding flow in the IETF trace.
+\item \textbf{average}: the average duration, total data sent, and number of packets sent across all trace flows is used for every simulated flow; flows start times are staggered across the duration of the simulation.
+\end{itemize}
+\item Flow behavior variants:
+\begin{itemize}
+\item \textbf{trace-based}: actual trace data is used to determine flow behavior.
+\item \textbf{CBR}: each flow is modeled as a constant bit-rate stream of data, with packet size and inter-packet interval determined by the flow parameters.
+\item \textbf{VBR}: similar to CBR, but each inter-packet interval time is randomly chosen from an exponential distribution instead of being fixed.
+\end{itemize}
+\item The control traffic model uses:
+\begin{itemize}
+\item real flow topology
+\item actual flow parameters
+\item trace-driven behavior
+\end{itemize}
+\item Each alternate model is compared to this base model.
+\begin{itemize}
+\item For each metric reported by the simulator, we compare the value reported by the control traffic model with the alternate traffic model.
+\item If the pairs of control values and model values tend to lie around the diagonal line on a scatter plot, then the metrics is accurately represented by the alternate model.
+\item Otherwise we conclude that the model tends to skew or misrepresent the metric somehow.
+\end{itemize}
+\item Discussion of the metrics considered and why they were chosen.
+\end{itemize}
+
+\section{Results}
+
+\begin{sidewaystable}
+\small\input{errors.tex}
+\end{sidewaystable}
+
+\paragraph{Application: Average Jitter}
+
+The application model is everything here: the two trace-driven simulations (sink \& uniform topologies) are both quite accurate, with just a few outliers. The CBR and CBR/Average application models on the other hand underestimate jitter by a huge margin.
+
+\paragraph{Application: Bytes Sent vs. Bytes Received}
+
+This appears to depend on a combination of application model and flow topology. None of the combinations of models I have run seems to accurately duplicate realistic behavior. It will be interesting to see what the results for VBR traffic are. The CBR/Average application models (what people typically use) are really way off—for both the uniform and sink topologies. The CBR model with a real flow topology is the most realistic, but still pretty far off of accurate.
+
+\paragraph{Application: Total Bytes Received}
+
+Apparently here the flow topology really matters, because the real topology with CBR application and realistic flow parameters is the only model that fared reasonably well—even then, there was a lot of room for improvement. Again, it will be very interesting to see the VBR results.
+
+\paragraph{MAC/802.11DCF: Total RTS/CTS/ACK Packets Sent}
+
+Here both flow topolgy and application model matter. The uniform flow topology does some serious damage to the realism of the results, but the real topology simulations with CBR and CBR/Average application models don't do that well either. The sink topology with trace-based flow behavior is the best here, indicating that the sink topology is good enough and that a more realistic individual flow behavior model is necessary.
+
+\paragraph{Network/Routing: Total Packets Dropped}
+
+Something really interesting happens here: the real and sink topologies behave very realistically, but all the uniform topology simulations drastically under-represent the number of dropped packets. The relationship between the realistic value and the values gotten from the uniform models are quite predictable, falling on a straight line on a log-log graph.
+
+\paragraph{Network/AODV: Number of RREQs Initiated}
+
+This is an odd one. The only combination of models that performs realistically is the real topology CBR/Average combination. The real topology CBR with realistic flow parameters predictably underestimates the number of RREQs initiated. All the other scenarios underestimate the it even more so—all in log-log-linear ways.
+
+\section{Discussion}
+
+\section{Conclusions}
+
+\end{document}

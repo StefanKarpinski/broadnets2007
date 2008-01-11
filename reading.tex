@@ -1,0 +1,728 @@
+\documentclass{article}
+
+\usepackage[notes]{optional}
+\usepackage[left=0.8in,top=0.9in,right=0.8in,bottom=1in,nohead]{geometry}
+\usepackage{url,hyperref,comment,amsmath}
+\usepackage[hyphenbreaks]{breakurl}
+
+%% this gives absolute numbering of enumerated items %%
+\newcounter{myEnumCounter}
+\newcounter{mySaveCounter}
+\renewenvironment{enumerate}{%
+  \begin{list}{[\arabic{myEnumCounter}]}{\usecounter{myEnumCounter}%
+  \setcounter{myEnumCounter}{\value{mySaveCounter}}}
+  }{%
+  \setcounter{mySaveCounter}{\value{myEnumCounter}}\end{list}%
+}
+\newcommand\myEnumReset{\setcounter{mySaveCounter}{0}}
+
+\renewcommand{\labelitemi}{$\triangleright$}
+\renewcommand{\labelitemii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+\opt{notes}{\newenvironment{notes}{\vspace{-0.4em}\begin{itemize}\small}{\end{itemize}}}
+\opt{-notes}{\excludecomment{notes}}
+
+\newcommand{\URL}[1]{{\small\burl{#1}}}
+
+\title{
+{\Large\it Major Area Exam}\\
+Reading List
+}
+\author{
+Stefan Karpinski\\
+Department of Computer Science\\
+University of California, Santa Barbara\\
+\texttt{sgk@cs.ucsb.edu}
+}
+
+\begin{document}
+\maketitle
+
+\section{Reference}
+
+\begin{enumerate}
+
+\bibitem{Stevens93}
+W.~Stevens.
+\textit{TCP/IP Illustrated, Volume 1: The Protocols}.
+Addison-Wesley Professional, 1st edition, 1993.
+
+\bibitem{Tanenbaum96}
+A.~Tanenbaum. \textit{Computer Networks}. Prentice Hall, Upper Saddle River NJ, 3rd edition, 1996.
+
+\end{enumerate}
+
+\section{General Networking}
+
+\begin{enumerate}
+
+\bibitem{Clark88}
+D.~Clark. The Design Philosophy of the DARPA Internet Protocols. \textit{Proceedings of ACM SIGCOMM '88}, 1988.
+
+\bibitem{Saltzer84} J.~Saltzer, D.~Reed,  D.~Clark. End-to-End Arguments in System Design. \textit{ACM Transactions on Computer Systems}, 1984.
+
+%\bibitem{Paxson97:end-to-end}
+%V.~Paxson.
+%End-to-end routing behavior in the Internet.
+%\textit{IEEE/ACM Transactions on Networking}, October 1997.
+
+\bibitem{Paxson97}
+V.~Paxson, S.~Floyd.
+Why we don't know how to simulate the Internet.
+\textit{Proceedings of 1997 Winter Simulation Conference}, Atlanta, GA, December 1997.
+
+\bibitem{Faloutsos99}
+M.~Faloutsos, P.~Faloutsos, C.~Faloutsos.
+On power-law relationships of the Internet topology.
+\textit{Proceedings of ACM SIGCOMM'99}, Cambridge MA,
+  August 1999.
+
+\bibitem{Medina00}
+A.~Medina, I.~Matta, J.~Byers.
+On the origin of power laws in Internet topologies.
+\textit{ACM Computer Communication Review}, April 2000.
+
+\bibitem{Zegura97}
+E.~Zegura, K.~Calvert, M.~Donahoo.
+A quantitative comparison of graph-based models for Internet topology.
+\textit{IEEE/ACM Transactions on Networking}, December 1997.
+
+\bibitem{Doar97}
+M.~Doar.
+A better model for generating test networks.
+\textit{Proceedings of IEEE Global Internet (GLOBECOM'97)}, London, UK, November 1997.
+  
+\bibitem{Satyanarayanan96}
+M.~Satyanarayanan.
+Fundamental challenges in mobile computing.
+\textit{Proceedings of ACM Symposium on Principles of Distributed Computing}, Philadelphia PA, May 1996.
+
+\bibitem{Macker98}
+J.~Macker, M.~Corson.
+Mobile ad hoc networking and the IETF.
+\textit{ACM Mobile Computing and Communications Review}, 1998.
+
+\bibitem{Perrone03}
+L.~Perrone, Y.~Yuan, D.~Nicol.
+Modeling and Simulation Best Practices for Wireless Ad hoc Networks.
+\textit{Proceedings of the Winter Simulation Conference}, December 2003.
+
+\end{enumerate}
+
+\section{Mathematical Foundations}
+
+\begin{enumerate}
+
+\bibitem{Ash65}
+R.~Ash. \textit{Information Theory}. Interscience Publishers, New York NY, 1965.
+
+\bibitem{Harvey93}
+A.~Harvey.
+\textit{Time Series Models}.
+The MIT Press, Cambridge MA, 2nd edition, 1993.
+
+\bibitem{Dubois93}
+D.~Dubois, H.~Prade.
+Fuzzy sets and probability: Misunderstandings, bridges and gaps.
+\textit{Proceedings of Second IEEE International Conference on Fuzzy Systems}, Piscataway NJ, 1993.
+
+\bibitem{Box94}
+G.~Box, G.~Jenkins.
+\textit{Time Series Analysis: Forecasting \& Control}.
+Holden-Day, 2nd edition, 1994.
+
+\bibitem{Kokoszka95}
+P.~Kokoszka, M.~Taqqu.
+Fractional ARIMA with Stable Innovations.
+\textit{Stochastic Processes and their Applications}, 1995.
+
+\bibitem{Adler98}
+R.~Adler, R.~Feldman, M.~Taqqu.
+\textit{A Practical Guide to Heavy Tails: Statistical Techniques and Applications}.
+Birkhauser, Boston MA, 1998.
+
+\bibitem{Carlson99}
+J.~Carlson, J.~Doyle. Highly optimized tolerance: A mechanism for power laws in designed systems.
+\textit{Physical Review E}, August 1999.
+
+\bibitem{Ross00}
+S.~Ross.
+\textit{Introduction to probability and statistics for engineers and scientists}.
+Harcourt Academic Press, San Diego CA, 2000.
+
+\bibitem{Downey01}
+A.~Downey.
+The structural cause of file size distributions.
+\textit{Proceedings of the Ninth International Symposium in Modeling, Analysis and Simulation of Computer and Telecommunication Systems (MASCOTS’01)}, 2001.
+
+\bibitem{Ross02}
+S.~Ross.
+\textit{Probability models for computer science}.
+Harcourt Academic Press, San Diego CA, 2002.
+
+\end{enumerate}
+
+\section{Node Behavior: Analysis, Modeling and Prediction}
+
+\subsection{Wired Networks}
+
+\begin{enumerate}
+
+\bibitem{Leland93}
+W.~Leland, M.~Taqq, W.~Willinger, D.~Wilson.
+On the self-similar nature of Ethernet traffic.
+\textit{Proceedings of ACM SIGCOMM'93}, San Francisco CA, 1993.
+
+\bibitem{Paxson95}
+V.~Paxson, S.~Floyd.
+Wide area traffic: the failure of poisson modeling.
+\textit{IEEE/ACM Transaction on Networking}, 1995.
+
+\bibitem{Taqqu97}
+S.~Taqqu, W.~Willinger, R.~Sherman.
+Proof of a fundamental result in self-similar traffic modeling.
+\textit{ACM SIGCOMM Computer Communication Review}, 1997
+
+\bibitem{Willinger98}
+W.~Willinger, V.~Paxson.
+Where mathematics meets the Internet.
+\textit{Notices of the American Mathematical Society}, August 1998.
+
+\bibitem{Wolski98}
+R.~Wolski.
+Dynamically forecasting network performance using the network weather service.
+\textit{Journal of Cluster Computing}, 1998.
+
+\bibitem{Fischer01}
+M.~Fischer, T.~Fowler.
+Fractals, Heavy-Tails and the Internet.
+\textit{Sigma Technology Summaries, 2 (Summer 2001)}, Mitretek Systems Technical Report, 2001.
+
+\bibitem{Brownlee02}
+N.~Brownlee, K.~Claffy.
+Understanding Internet traffic streams: Dragonflies and tortoises.
+\textit{IEEE Communications Magazine}, October 2002.
+
+\bibitem{Saroiu02}
+S.~Saroiu, P.~Gummadi, S.~Gribble.
+A Measurement Study of Peer-to-Peer File Sharing Systems.
+Technical Report UW-CSE-01-06-02, Department of Computer Science \& Engineering, University of Washington, 2002.
+
+\bibitem{Willinger02}
+W.~Willinger, R.~Govindan, S.~Jamin, V.~Paxson, S.~Shenker.
+Scaling phenomena in the Internet: Critically examining criticality.
+\textit{Proceedings of the National Academy of Sciences of the United States of America}, February 2002.
+
+\bibitem{Zhang02}
+Y.~Zhang, L.~Breslau, V.~Paxson, S.~Shenker.
+On the Characteristics and Origins of Internet Flow Rates.
+\textit{Proceedings of the 2002 conference on Applications, technologies, architectures, and protocols for computer communications}, 2002.
+
+\bibitem{Estan03}
+C.~Estan, S.~Savage, G.~Varghese.
+Automatically Inferring Patterns of Resource Consumption in Network Traffic.
+\textit{Proceedings of SIGCOMM}, Karlsruhe, Germany, 2003.
+
+\bibitem{Brevik04}
+J.~Brevik, D.~Nurmi, R.~Wolski.
+Automatic methods for predicting machine availability in desktop grid and peer-to-peer systems.
+\textit{Proceedings of Fourth International Scientific Workshop on Global and Peer-to-Peer Computing}, Chicago IL, 2004.
+
+\bibitem{Karagiannis04}
+T.~Karagiannis, M.~Molle, M.~Faloustos, A.~Broido.
+A nonstationary poisson view of Internet traffic.
+\textit{Proceedings of IEEE INFOCOM 2004}, March 2004.
+
+\bibitem{Uhlig04}
+S.~Uhlig.
+Non-stationarity and high-order scaling in TCP flow arrivals: a methodological analysis.
+\textit{ACM SIGCOMM Computer Communications Review}, April 2004.
+
+\bibitem{Sen04}
+S.~Sen, J.~Wang.
+Analyzing Peer-To-Peer Traffic Across Large Networks.
+\textit{IEEE/ACM Transactions on Networking}, April 2004.
+
+\bibitem{Wright04}
+C.~Wright, F.~Monrose, G.~Masson.
+HMM Profiles for Network Traffic Classification (Extended Abstract).
+\textit{Proceedings of VizSEC/DMSEC’04}, Washington DC, October 2004.
+
+\bibitem{Yin05}
+H.~Yin, C.~Lin, B.~Sebastien, B.~Li, G.~Min.
+Network traffic prediction based on a new time series model.
+\textit{International Journal of Communication Systems}, February 2005.
+
+\bibitem{Karagiannis05}
+T.~Karagiannis, K.~Papagiannaki, M.~Faloutsos.
+BLINC: Multilevel Traffic Classification in the Dark.
+\textit{Proceedings of ACM SIGCOMM}, August 2005.
+
+\bibitem{Brownlee05}
+N.~Brownlee.
+Some Observations of Internet Stream Lifetimes.
+\textit{Passive and Active Measurement Workshop}, 2005
+
+\bibitem{Harmantzis05}
+F.~Harmantzis, D.~Hatzinakos.
+Heavy Network Traffic Modeling and Simulation using Stable FARIMA Processes.
+Not yet published (see \URL{http://personal.stevens.edu/~fharmant/Publish/Stochastics/HHitc05.PDF}).
+
+\bibitem{Gong05}
+W.~Gong, Y.~Liu, V.~Misra.
+Self-Similarity and Long Range Dependence on the Internet: A Second Look at the Evidence, Origins and Implications.
+Not yet published (see \URL{http://www-net.cs.umass.edu/~yongliu/papers/cn.pdf}).
+
+\bibitem{Shi05}
+W.~Shi, M.~MacGregor, P.~Gburzynski.
+Synthetic Trace Generation for the Internet: An Integrated Model.
+Not yet published (see \URL{http://www.cs.ualberta.ca/~pawel/PAPERS/spects04.pdf}).
+
+\bibitem{Lan05}
+K.~Lan, J.~Heidemann.
+On the correlation of Internet flow characteristics.
+Not yet published (see \URL{http://www.cse.unsw.edu.au/~klan/paper/flow.pdf}).
+
+\end{enumerate}
+
+\subsection{Wireless Networks}
+
+\begin{enumerate}
+
+\bibitem{Liu98}
+T.~Liu, P.~Bahl, I.~Chlamtac.
+Mobility modeling, location tracking, and trajectory prediction in wireless ATM networks.
+\textit{IEEE Journal on Selected Areas in Communications}, 1998.
+
+\begin{notes}
+\item Early cell network research on predicting user mobility.
+\item Useful for predicting the next cell more accurately, but doesn't provide an overall picture of node mobility.
+\item Uses Kalman filter to predict the next cell station.
+\end{notes}
+
+\bibitem{Tang99}
+D.~Tang, M.~Baker. Analysis of a Metropolitan-Area Wireless Network.
+\textit{Proceedings of Mobicom 1999}, Seattle WA, Aug 1999.
+
+\begin{notes}
+\item Analysis of seven-week trace of the Metricom metropolitan-area packet radio wireless network.
+\item Examines the following features:
+\begin{itemize}
+	\item number of active nodes over days and hours
+	\item frequency and distance of node movement
+\end{itemize}
+\item Uses clustering to classify radio stations by proximity, and mobile nodes by:
+\begin{itemize}
+	\item total number of locations
+	\item average number of location changes per active day
+	\item total number of active days
+	\item average number of active days per active week
+	\item average number of queries per day
+\end{itemize}
+\item No resulting models, just descriptive analysis
+\end{notes}
+
+\bibitem{Tang00}
+D.~Tang, M.~Baker. Analysis of a local-area wireless Network. \textit{Proceedings of Mobicom 2000}, Boston MA, 2000.
+
+\begin{notes}
+\item Analysis of a 12-week trace of a WLAN at the Gates Computer Science Building at Stanford.
+\item Examines the following aggregate network features:
+\begin{itemize}
+	\item active users per time of day
+	\item active users per day of week
+	\item number of active days per user
+	\item number of APs visited per user
+	\item number of users per AP
+	\item number of handoffs per AP
+	\item throughput by bytes, packets, APs, applications, and users
+\end{itemize}
+\item Examines the following ``user traffic characteristics'':
+\begin{itemize}
+	\item application breakdown by users, packets/bytes, in/out
+	\item classes of application mixture profiles (by eye, not clustering)
+\end{itemize}
+\item Purely descriptive, no models.
+\end{notes}
+
+\bibitem{Kotz02}
+D.~Kotz, K.~Essien.
+Analysis of a campus-wide wireless network.
+\textit{Proceedings of ACM MobiCom 2002}, September 2002.
+
+\begin{notes}
+\item Analysis of traces from WLAN at Dartmouth in the Fall term of 2001.
+\item Based on syslog, snmp, and sniffed traffic ($\text{node}=\text{card}$).
+\item Traffic:
+\begin{itemize}
+	\item total traffic volume
+	\item amount of traffic per card
+	\item variance across hours, days, weekdays
+\end{itemize}
+\item Users and Mobility:
+\begin{itemize}
+	\item number of cards
+	\item number of active days per card
+	\item number of APs per card
+	\item number of buildings per card
+\end{itemize}
+\item Card (Node) Activity:
+\begin{itemize}
+	\item number of active cards
+	\item times cards are active
+	\item session duration
+	\item number of sessions per day
+	\item distribution of sessions per building
+	\item roaming: portion of sessions, how often per session
+\end{itemize}
+\item AP Activity:
+\begin{itemize}
+	\item number of APs
+	\item times APs are active
+	\item distribution of activity across APs
+\end{itemize}
+\item Buildings...
+\item Protocols...
+\item Basically, it's a laundry list of descriptive questions.
+\end{notes}
+
+%\bibitem{Balachandran02:hot-spots}
+%A.~Balachandran, P.~Bahl, G.~Voelker.
+%Hot-Spot Congestion Relief in Public-area Wireless Networks.
+%\textit{Fourth IEEE Workshop on Mobile Computing Systems and Applications}, Callicoon NY, June 2002.
+
+\bibitem{Balachandran02}
+A.~Balachandran, G.~Voelker, P.~Bahl, V.~Rangan.
+Characterizing User Behavior and Network Performance in a Public Wireless LAN.
+\textit{Proceedings of ACM SIGMETRICS'02}, Marina Del Ray CA, June 2002.
+
+\begin{notes}
+\item Analysis of public WLAN trace recorded over 3 days at SIGCOMM at UCSD in August 2001.
+\item Aims to ``characterize user behavior and network performance in a public WLAN environment.''
+\item User behavior:
+\begin{itemize}
+	\item connection session length
+	\item user distribution across APs
+	\item mobility patterns
+	\item application mixture
+	\item bandwidth requirements
+\end{itemize}
+\item Network performance:
+\begin{itemize}
+	\item overall, individual AP load
+	\item packet errors, retransmissions
+\end{itemize}
+\item Major claims/findings:
+\begin{itemize}
+	\item mobility follows a two-state Markov-Modulated Poisson Process (MMPP).
+	\item session length is Pareto-distributed.
+	\item load distribution across APs is uneven.
+	\item AP workload does not follow number of users.
+\end{itemize}
+\item Major criticisms:
+\begin{itemize}
+\item They present \textit{no evidence} for their claim that mobility follows a two-state MMPP model other than stating it repeatedly and referring to previous work. Moreover, the previous work (not available online) is for a model of \textit{aggregate traffic} in mobile networks, not mobility itself. Moreover, it was published in 1996, at which point there was no actual public WLAN data on which to base realistic models.
+\item Their claim that session duration is Pareto is also not backed up---they don't even show the PDF or CDF of the distribution or mention any quality of fit measures.
+\end{itemize}
+\item This paper makes two claims that relate to user behavior modeling, but both claims are unsubstantiated and given without any trace of evidence.
+\end{notes}
+
+\bibitem{Camp02}
+T.~Camp, J.~Boleng, V.~Davies.
+A survey of mobility models for ad hoc network research.
+\textit{Wireless Communications and Mobile Computing}, September 2002.
+
+\begin{notes}
+\item Individual entity models:
+\begin{itemize}
+	\item random walk (and derivatives)
+	\item random waypoint
+	\begin{itemize}
+		\item discusses density waves but not speed decay~\cite{Yoon03:speed-decay,Yoon03:sound-models}.
+	\end{itemize}
+	\item random direction
+	\begin{itemize}
+		\item travel to edge, bounce off
+		\item avoids density waves (and speed decay)
+	\end{itemize}
+	\item boundless simulation area
+	\begin{itemize}
+		\item rectangular simulation area topologically transformed in a torus
+		\item speed, direction adjusted every unit of time by uniform random delta values
+	\end{itemize}
+	\item Gauss-Markov mobility model
+	\begin{itemize}
+		\item speed, direction modeled as ARMA(1) random time-series
+		\item nodes are forced away from simulation edges
+	\end{itemize}
+	\item probabilistic random walk
+	\begin{itemize}
+		\item velocity: $(x,y)\in\{-1,0,+1\}^2$
+		\item $x,y$ modeled as independent three-state Markov processes
+		\item the Markov transition matrix is the simulation ``control knob''
+	\end{itemize}
+	\item city section model
+	\begin{itemize}
+		\item city modeled as uniform grid
+		\item streets have different speed limits
+		\item destination chosen at random
+		\item path chosen is the fastest
+	\end{itemize}
+\end{itemize}
+\item Group mobility models
+\begin{itemize}
+	\item exponential correlated model
+	\item column model: uniformly moving nodes in some formation
+	\item nomadic community model
+	\begin{itemize}
+		\item group reference point moves according to one model
+		\item each node has own space and moves within that
+	\end{itemize}
+	\item pursue model: a group follows a moving target
+	\item reference point model
+	\begin{itemize}
+		\item group movements centered on a moving center point
+		\item not clear on how this differs from nomadic community
+		\item uses random waypoint for both levels of mobility
+	\end{itemize}
+\end{itemize}
+\item Simulation results: choice of mobility model impacts protocol performance.
+\end{notes}
+
+\bibitem{Yoon03:speed-decay}
+J.~Yoon, M.~Liu, B.~Noble.
+Random Waypoint Considered Harmful.
+\textit{Proceedings of INFOCOM 2003}, San Francisco, April 2003.
+
+\begin{notes}
+\item Discovered that node speed decays in random waypoint model.
+\item Investigate impact and ways to mitigate the problem.
+\end{notes}
+
+\bibitem{Balazinska03}
+M.~Balazinska, P.~Castro.
+Characterizing mobility and network usage in a corporate wireless local-area network.
+\textit{Proceedings of ACM MobiSys 2003}, May 2003.
+
+\begin{notes}
+\item Analysis of four week trace gathered on a corporate WLAN (1366 users).
+\item Features examined:
+\begin{itemize}
+	\item distribution of load across APs
+	\item descriptive analysis of users
+	\item correlation between users and load
+	\item correlation between time of day and load
+	\item distribution of average individual transfer rates
+	\item number of APs visited per user
+	\item fraction of time users spend at ``home location''
+	\item AP prevalence and persistence wrt users
+		$\Rightarrow$ this merits more investigation
+\end{itemize}
+\item Important results:
+\begin{itemize}
+	\item average user transfer rate found to follow a clean power law, possibly Pareto
+	\item user transfer rates \textit{are} dependent on location, and thus mobility
+	\item interesting results on prevalence and persistence of APs wrt users
+\end{itemize}
+\end{notes}
+
+\bibitem{Yoon03:sound-models}
+J.~Yoon, M.~Liu, B.~Noble.
+Sound Mobility Models.
+\textit{Proceedings of ACM MobiCom'03}, San Diego CA, September 2003.
+
+\begin{notes}
+\item Broad class of random mobility models suffer from decay.
+\item Ways to avoid the decay phenomenon:
+\begin{itemize}
+	\item using a warmup period is a partial solution
+	\item pick initial parameter values from their marginal distributions
+\end{itemize}
+\end{notes}
+
+\bibitem{Jardosh03}
+A.~Jardosh, E.~Belding-Royer, K.~Almeroth, S.~Suri.
+Towards Realistic Mobility Models For Mobile Ad hoc Networks.
+\textit{Proceedings of ACM MobiCom'03}, San Diego CA, September 2003.
+
+\begin{notes}
+\item Obstacle mobility model:
+\begin{itemize}
+	\item obstacles are polygonal shapes
+	\item paths are given by Vornoi graph for obstacle vertices
+	\item intersection of graph with obstacles defines ``doorways''
+	\item other graph intersections define destination points (interior, exterior)
+\end{itemize}
+\item Line-of-sight model for transmission through obstacles.
+\end{notes}
+
+%\bibitem{Chowell03}
+%G.~Chowell, J.~Hyman, S.~Eubank, C.~Castillo-Chavez.
+%Scaling laws for the movement of people between locations in a large city.
+%\textit{Physical Review E}, December 2003.
+
+\bibitem{Chinchilla04}
+F.~Chinchilla, M.~Lindsey, M.~Papadopouli.
+Analysis of wireless information locality and association patterns in a campus.
+\textit{Proceedings of IEEE INFOCOM 2004}, March 2004.
+
+\begin{notes}
+\item Analysis of traces from UNC campus WLAN, February through April 2003 (7,694 clients).
+\item Primary focus on data locality and possible caching paradigms.
+\item Secondary focus on user association and mobility patterns.
+\item Using Markov chains, 86\% accuracy in predicting next AP association.
+\begin{itemize}
+	\item individual transition matrix is maintained \textit{for each mobile node}
+	\item Markov state determined by either most recent APs those 24 hours prior	\item how much of the remaining 14\% accuracy is due to inherent randomness?
+	\item is it even possible to know this? can we determine inherent randomness?
+\end{itemize}
+\item Also looked at revisit probabilities by client and by AP.
+\end{notes}
+
+\bibitem{Schwab04}
+D.~Schwab, R.~Bunt.
+Characterizing the use of a campus wireless network.
+\textit{Proceedings of IEEE INFOCOM 2004}, March 2004.
+
+\begin{notes}
+\item Analysis of trace of WLAN at University of Saskatchewan, from one week in January 2003 (134 users).
+\item This is another grab-bag of random figures and statistics: no models.
+%\item I can't believe this crap got into INFOCOM.
+\end{notes}
+
+\bibitem{Zheng04}
+Q.~Zheng, X.~Hong, S.~Ray.
+Recent Advances in Mobility Modeling for Mobile Ad Hoc Network Research.
+\textit{Proceedings of ACMSE’04}, Huntsville AL, April 2004.
+
+\begin{notes}
+\item Content-free survey of mobility models.
+\item Covers the same models as Camp's survey~\cite{Camp02}, but briefly mentions the obstacle model.
+\item Doesn't go into nearly the same depth or detail, except for RWP.
+\end{notes}
+
+%\bibitem{Madsen04}
+%T.~Madsen, F.~Fitzek, R.~Prasad.
+%Impact of Different Mobility Models On Connectivity Probability of a Wireless Ad Hoc Network.
+%\textit{Proceedings of International Workshop on Wireless Ad Hoc Networks}, June 2004.
+
+\bibitem{Henderson04}
+T.~Henderson, D.~Kotz, I.~Abyzov.
+The changing usage of a mature campus-wide wireless network.
+\textit{Proceedings of ACM MobiCom 2004}, September 2004.
+
+\begin{notes}
+\item Revisit of Dartmouth campus WLAN previously analyzed by Kotz~\cite{Kotz02}.
+\item Utilization and mobility increased; most other characteristics remained static.
+\end{notes}
+
+\bibitem{Meng04}
+X.~Meng, S.~Wong, Y.~Yuan, S.~Lu.
+Characterizing flows in large wireless data networks.
+\textit{Proceedings of ACM MobiCom 2004}, September 2004.
+
+\begin{notes}
+\item Analysis of multiple wireless traces (Dartmouth '02, UCSD '01, IBM '02, Stanford '00).
+\item Analysis of flows rather than packets or bytes.
+\item Establishes convincing distribution fits for the following:
+\begin{itemize}
+	\item Interarrival times: Lognormal
+	\item Residing times: Lognormal
+	\item Number of APs visited: Weibull/Gamma
+\end{itemize}
+\end{notes}
+
+\bibitem{Musolesi04}
+M.~Musolesi, S.~Hailes, C.~Mascolo.
+An Ad Hoc Mobility Model Founded on Social Network Theory.
+\textit{Proceedings of ACM MSWiM’04}, Venezia, Italy, October 2004.
+
+\begin{notes}
+\item Interesting idea, but the actual mobility model is disappointing:
+\begin{itemize}
+	\item the only thing that's determined according to the social network theory is node groups, and it's not at all clear that the ``social network theory'' is really accurately modeling anything relevant or why the resulting groups would be more realistic than anything else
+	\item nodes move within ``the group area'' according to good ol' random way point
+	\item groups move in some unspecified manner towards ``randomly chosen goals''
+\end{itemize}
+\item Evaluation is practically non-existent.
+\end{notes}
+
+\bibitem{Tuduce05}
+C.~Tuduce, T.~Gross.
+A Mobility Model Based on WLAN Traces and its Validation.
+\textit{Proceedings of IEEE INFOCOM}, March 2005.
+
+\begin{notes}
+\item Mobility model derived from two, two-month campus WLAN traces.
+\item Details of the mobility model:
+\begin{itemize}
+	\item simulation space divided into cells
+	\item checkpoint set is set of cells a nodes is going to visit
+	\item size of checkpoint set follows a power law
+	\item additional cells chosen probabilistically (same, neighbor or non-neighbor)
+	\item doesn't consider correlation between checkpoint set size and probability values
+	\item later, cells are chosen from checkpoint set uniformly
+	\item session durations are independently chosen from a Pareto distribution
+	\item inter-session times are strangely chosen from a uniform distribution
+\end{itemize}
+\item Evaluation:
+\begin{itemize}
+	\item clever method for choosing the test user set from their data: examine MSE of mobility characteristics (they don't way what) as smaller sets are chosen; choose the smallest set that still will exhibit correct properties.
+	\item evaluation of spatial distribution is not so convincing.
+\end{itemize}
+\end{notes}
+
+\bibitem{Jardosh05}
+A.~Jardosh, E.~Belding-Royer, K.~Almeroth, S.~Suri.
+Real-World Environment Models for Mobile Network Evaluation.
+\textit{IEEE Journal on Selected Areas in Communications}, March 2005.
+
+\begin{notes}
+\item Same polygonal obstacle model with Voronoi paths, doorways and destinations~\cite{Jardosh03}.
+\item Mobility model additions and variations:
+\begin{itemize}
+	\item exponential destination selection
+	\item note: it would be good to look at how Markov models of mobility from actual traces relate to the exponential destination selection model; are the transition probabilities really exponentially related to distance?
+\end{itemize}
+\item Signal propagation model:
+\begin{itemize}
+	\item mixed Friis'/two-ray propagation model
+	\item use real observations of signal attenuation through building walls
+\end{itemize}
+\item Simulation to show differences induced by obstacle model \textit{vs.} other models
+\end{notes}
+
+\bibitem{Papadopouli05:duration-association}
+M.~Papadopouli, H.~Shen, M.~Spanakis.
+Characterizing the duration and association patterns of wireless access in a campus.
+\textit{11th European Wireless Conference}, April 2005.
+
+\bibitem{Eagle05}
+N.~Eagle, A.~Pentland.
+Reality Mining: Sensing Complex Social Systems. 
+\textit{Journal of Personal and Ubiquitous Computing}, September 2005 (to appear; see also \URL{http://reality.media.mit.edu/pdfs/realitymining.pdf}).
+
+\bibitem{Jain05}
+R.~Jain, A.~Shivaprasad, D.~Lelescu, X.~He.
+An empirical model for user registration patterns in a campus wireless LAN.
+\textit{Proceedings of ACM MobiCom'05}, Cologne, Germany, September 2005 (to appear; see also \URL{http://delivery.acm.org/10.1145/1060000/1052877/p59-jain.pdf}).
+
+\bibitem{Papadopouli05:client-arrivals}
+M.~Papadopouli, H.~Shen, M.~Spanakis.
+Modeling client arrivals at access points in wireless campus-wide networks.
+Not yet published (see \URL{http://www.csd.uoc.gr/~maria/papers/lanman05-A.pdf}).
+
+\bibitem{Zimmermann05}
+H.~Zimmermann , I.~Gruber, C.~Roman. 
+A Voronoi-Based Mobility Model For Urban Environments.
+Not yet published (see \URL{http://www.lkn.ei.tum.de/forschung/publikationen/dateien/Zimmermann2005AVoronoi-basedMobilityModel.pdf}).
+
+\bibitem{Kim05}
+J.~Kim, S.~Bohacek.
+A Survey-Based Mobility Model of People for Simulation of Urban Mesh Networks.
+Not yet published (see \URL{http://www.eecis.udel.edu/~bohacek/UDelModels/pubs/urbanpedmobility.pdf}).
+
+\end{enumerate}
+
+\end{document}
